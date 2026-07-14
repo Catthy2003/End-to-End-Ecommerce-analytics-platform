@@ -1,65 +1,41 @@
 -- New Customers by Month
-
-WITH first_purchase AS (
+WITH customer_orders AS (
     SELECT
         c.customer_unique_id,
-        MIN(o.order_purchase_timestamp) AS first_purchase_date
-
+        o.order_id,
+        o.order_purchase_timestamp,
+        ROW_NUMBER() OVER(
+            PARTITION BY c.customer_unique_id
+            ORDER BY o.order_purchase_timestamp
+        ) AS rn
+    
     FROM raw.customers c
-
     JOIN raw.orders o
     ON c.customer_id = o.customer_id
-    GROUP BY c.customer_unique_id
-
 )
 
-SELECT
-
-    DATE_TRUNC('month', first_purchase_date) AS month,
-
-    COUNT(*) AS new_customers
-
-FROM first_purchase
-
-GROUP BY month
-
-ORDER BY month;
+SELECT *
+FROM customer_orders
+WHERE rn = 1;
 
 -- Repeat Customers
-WITH customer_orders AS (
-
-SELECT
-    c.customer_unique_id,
-    o.order_id,
-    o.order_purchase_timestamp,
-    ROW_NUMBER() OVER(
-        PARTITION BY c.customer_unique_id
-        ORDER BY o.order_purchase_timestamp
-    ) AS rn
-
-FROM raw.customers c
-JOIN raw.orders o
-ON c.customer_id = o.customer_id
-)
-
 SELECT *
 FROM customer_orders
 WHERE rn >= 2;
 
 -- Repeat Customers by Month
 WITH ranked_orders AS (
+    SELECT
+        c.customer_unique_id,
+        o.order_purchase_timestamp,
+        ROW_NUMBER() OVER(
+            PARTITION BY c.customer_unique_id
+            ORDER BY o.order_purchase_timestamp
+        ) AS rn
 
-SELECT
-    c.customer_unique_id,
-    o.order_purchase_timestamp,
-    ROW_NUMBER() OVER(
-        PARTITION BY c.customer_unique_id
-        ORDER BY o.order_purchase_timestamp
-    ) AS rn
-
-FROM raw.customers c
-JOIN raw.orders o
-ON c.customer_id = o.customer_id
+    FROM raw.customers c
+    JOIN raw.orders o
+    ON c.customer_id = o.customer_id
 )
 
 SELECT
