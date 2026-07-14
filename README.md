@@ -34,11 +34,11 @@ Brazilian E-commerce Public Dataset by Olist
 
 ## Project Roadmap
 
-- [ ] Project Setup
-- [ ] Database Design
-- [ ] ETL Pipeline
-- [ ] Data Validation
-- [ ] Multi-table Processing
-- [ ] SQL Analytics
+- [v] Project Setup
+- [v] Database Design
+- [v] ETL Pipeline
+- [v] Data Validation
+- [v] Multi-table Processing
+- [v] SQL Analytics
 - [ ] Power BI Dashboard
 - [ ] Business Report
