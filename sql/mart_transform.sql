@@ -181,3 +181,37 @@ FROM (
 ) AS date_series
 ON CONFLICT (date_key)
 DO NOTHING;
+
+-- ====================================================
+-- FACT_ORDER
+-- ====================================================
+CREATE TABLE IF NOT EXISTS mart.fact_sales (
+
+    fact_key BIGSERIAL PRIMARY KEY,
+
+    date_key INTEGER NOT NULL,
+    customer_key INTEGER NOT NULL,
+    seller_key INTEGER NOT NULL,
+    product_key INTEGER NOT NULL,
+
+    order_id TEXT NOT NULL,
+    order_item_id INTEGER NOT NULL,
+
+    price NUMERIC(10,2),
+    freight_value NUMERIC(10,2),
+    review_score SMALLINT,
+
+    etl_loaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    FOREIGN KEY (date_key)
+        REFERENCES mart.dim_date(date_key),
+
+    FOREIGN KEY (customer_key)
+        REFERENCES mart.dim_customer(customer_key),
+
+    FOREIGN KEY (seller_key)
+        REFERENCES mart.dim_seller(seller_key),
+
+    FOREIGN KEY (product_key)
+        REFERENCES mart.dim_product(product_key)
+);
