@@ -28,11 +28,10 @@ DO NOTHING;
 -- DIM_PRODUCT
 -- =====================================================
 INSERT INTO mart.dim_product (
-
     product_id,
     product_category_name,
-    product_name_length,
-    product_description_length,
+    product_name_lenght,
+    product_description_lenght,
     product_photos_qty,
     product_weight_g,
     product_length_cm,
@@ -43,8 +42,8 @@ INSERT INTO mart.dim_product (
 SELECT
     product_id,
     product_category_name,
-    product_name_length,
-    product_description_length,
+    product_name_lenght,
+    product_description_lenght,
     product_photos_qty,
     product_weight_g,
     product_length_cm,
@@ -77,27 +76,39 @@ DO NOTHING;
 -- =====================================================
 -- DIM_DATE
 -- =====================================================
-SELECT
-    MIN(DATE(order_purchase_timestamp)) AS start_date,
-    MAX(DATE(order_purchase_timestamp)) AS end_date
-FROM staging.orders;
+CREATE TABLE IF NOT EXISTS mart.dim_date (
+    date_key INTEGER PRIMARY KEY,
+    full_date DATE NOT NULL,
+    day SMALLINT NOT NULL,
+    month SMALLINT NOT NULL,
+    month_name TEXT NOT NULL,
+    quarter SMALLINT NOT NULL,
+    year INTEGER NOT NULL,
+    week_of_year SMALLINT NOT NULL,
+    day_of_week SMALLINT NOT NULL,
+    day_name TEXT NOT NULL,
+    is_weekend BOOLEAN NOT NULL,
+    is_month_start BOOLEAN NOT NULL,
+    is_month_end BOOLEAN NOT NULL
+);
 
-SELECT generate_series AS full_date
 WITH date_series AS (
+
     SELECT
         generate_series AS full_date
 
     FROM generate_series(
-        (SELECT 
-            MIN(DATE(order_purchase_timestamp))
+
+        (SELECT MIN(DATE(order_purchase_timestamp))
          FROM staging.orders),
 
-        (SELECT 
-            MAX(DATE(order_purchase_timestamp))
+        (SELECT MAX(DATE(order_purchase_timestamp))
          FROM staging.orders),
 
         INTERVAL '1 day'
+
     )
+
 )
 
 INSERT INTO mart.dim_date (
