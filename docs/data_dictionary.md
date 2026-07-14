@@ -6,9 +6,9 @@
 |--------------------------|-----------|-------------------------------------------------------------------------|
 | customer_id              | TEXT      | Unique identifier of each customer                                      |
 | customer_unique_id       | TEXT      | Unique identifier representing the same customer across multiple orders |
-| customer_zip_code_prefix | INTEGER   | Customer ZIP code prefix                                                |
+| customer_zip_code_prefix | TEXT      | Customer ZIP code prefix                                                |
 | customer_city            | TEXT      | Customer city                                                           |
-| customer_state           | TEXT      | Customer state                                                          |
+| customer_state           | CHAR(2)   | Customer state                                                          |
 
 ---
 
@@ -86,7 +86,7 @@
 | seller_id              | TEXT      | Unique identifier of each seller  |
 | seller_zip_code_prefix | TEXT      | First 5 digits of seller zip code |
 | seller_city            | TEXT      | Seller city name                  |
-| seller_state           | TEXT      | Seller state                      |
+| seller_state           | CHAR(2)   | Seller state                      |
 
 ---
 
@@ -107,4 +107,4 @@
 | geolocation_lat             | NUMERIC(10,2) | Latitude                   |
 | geolocation_lng             | NUMERIC(10,2) | Longitude                  |
 | geolocation_city            | TEXT          | City name                  |
-| geolocation_state           | TEXT          | State                      |
+| geolocation_state           | CHAR(2)       | State                      |

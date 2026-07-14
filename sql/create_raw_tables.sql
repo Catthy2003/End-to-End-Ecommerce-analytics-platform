@@ -7,7 +7,7 @@ CREATE SCHEMA IF NOT EXISTS raw;
 CREATE TABLE IF NOT EXISTS raw.customers (
     customer_id TEXT PRIMARY KEY,
     customer_unique_id TEXT NOT NULL,
-    customer_zip_code_prefix INTEGER,
+    customer_zip_code_prefix TEXT NOT NULL,
     customer_city TEXT,
     customer_state CHAR(2)
 );
@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS raw.order_reviews (
 -- =========================
 CREATE TABLE IF NOT EXISTS raw.sellers (
     seller_id TEXT PRIMARY KEY,
-    seller_zip_code_prefix INTEGER NOT NULL,
+    seller_zip_code_prefix TEXT NOT NULL,
     seller_city TEXT NOT NULL,
     seller_state CHAR(2) NOT NULL
 );
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS raw.sellers (
 -- Geolocation
 -- =========================
 CREATE TABLE IF NOT EXISTS raw.geolocation (
-    geolocation_zip_code_prefix INTEGER PRIMARY KEY,
+    geolocation_zip_code_prefix TEXT PRIMARY KEY,
     geolocation_lat NUMERIC(10,6) NOT NULL,
     geolocation_lng NUMERIC(10,6) NOT NULL,
     geolocation_city TEXT NOT NULL,
