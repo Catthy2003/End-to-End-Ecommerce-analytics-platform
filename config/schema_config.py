@@ -101,7 +101,7 @@ TABLE_CONFIG = {
     },
     
     "geolocation": {
-        "primary_keys": ["geolocation_zip_code_prefix"],
+        "primary_keys": ["geolocation_zip_code_prefix", "geolocation_lat", "geolocation_lng"],
         
         "required_columns": [
             "geolocation_zip_code_prefix",
@@ -112,7 +112,7 @@ TABLE_CONFIG = {
     },
     
     "product_category_name_translation": {
-        "primary_keys": ["product_category_name"],
+        "primary_keys": ["product_category_name", "product_category_name_english"],
         
         "required_columns": [
             "product_category_name",

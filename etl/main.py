@@ -3,21 +3,15 @@ from utils.logger import logger
 from etl.extract import extract
 
 
-from config.schema_config import TABLE_CONFIG
-
 def run_pipeline():
     logger.info("Pipeline started")
     
-    for table_name in TABLE_CONFIG.keys():
-        config = TABLE_CONFIG[table_name]["path"]
-        
-        df = extract(config)
-    
-        load_dataframe(
-            df=df,
-            schema="raw",
-            table_name=table_name,
-            if_exists="append"
+    df = extract(r"C:\Cathy\End-to-End-Ecommerce-analytics-platform\data\raw\product_category_name_translation.csv")
+    load_dataframe(
+        df=df,
+        schema="raw",
+        table_name="product_category_name_translation",
+        if_exists="append"
         )
 
     logger.info("Pipeline completed successfully")
