@@ -215,3 +215,49 @@ CREATE TABLE IF NOT EXISTS mart.fact_sales (
     FOREIGN KEY (product_key)
         REFERENCES mart.dim_product(product_key)
 );
+
+-- ====================================================
+-- 
+-- ====================================================
+WITH sales_source AS (
+
+    SELECT
+        o.order_id,
+        o.customer_id,
+        o.order_purchase_timestamp,
+
+        oi.order_item_id,
+        oi.product_id,
+        oi.seller_id,
+
+        oi.price,
+        oi.freight_value,
+
+        r.review_score
+
+    FROM staging.orders o
+
+    JOIN staging.order_items oi
+        ON o.order_id = oi.order_id
+
+    LEFT JOIN staging.order_reviews r
+        ON o.order_id = r.order_id
+),
+
+sales_lookup AS (
+    SELECT
+        ss.order_id,
+        ss.order_item_id,
+
+        dc.customer_key,
+        dp.product_key,
+        ds.seller_key,
+        dd.date_key,
+
+        ss.price,
+        ss.freight_value,
+        ss.review_score
+
+    FROM sales_source ss
+    
+)
