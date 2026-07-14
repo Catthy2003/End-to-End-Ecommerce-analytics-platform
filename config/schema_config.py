@@ -12,7 +12,8 @@ TABLE_CONFIG = {
             "order_delivered_carrier_date",
             "order_delivered_customer_date",
             "order_estimated_delivery_date"
-        ]
+        ],
+        "path": "data/raw/orders.csv"
     },
 
     "customers": {
@@ -24,7 +25,8 @@ TABLE_CONFIG = {
             "customer_zip_code_prefix",
             "customer_city",
             "customer_state"
-        ]
+        ],
+        "path": "data/raw/customers.csv"
     },
     
     "order_items": {
@@ -38,7 +40,8 @@ TABLE_CONFIG = {
             "shipping_limit_date",
             "price",
             "freight_value"
-        ]
+        ],
+        "path": "data/raw/order_items.csv"
     },
     
     "products": {
@@ -54,7 +57,8 @@ TABLE_CONFIG = {
             "product_length_cm",
             "product_height_cm",
             "product_width_cm"
-        ]
+        ],
+        "path": "data/raw/products.csv"
     },
     
     "sellers": {
@@ -65,7 +69,8 @@ TABLE_CONFIG = {
             "seller_zip_code_prefix",
             "seller_city",
             "seller_state"
-        ]
+        ],
+        "path": "data/raw/sellers.csv"
     },
     
     "order_payments": {
@@ -76,7 +81,8 @@ TABLE_CONFIG = {
             "payment_type",
             "payment_installments",
             "payment_value"
-        ]
+        ],
+        "path": "data/raw/order_payments.csv"
     },
     
     "order_reviews": {
@@ -90,7 +96,8 @@ TABLE_CONFIG = {
             "review_comment_message",
             "review_creation_date",
             "review_answer_timestamp"
-        ]
+        ],
+        "path": "data/raw/order_reviews.csv"
     },
     
     "geolocation": {
@@ -100,7 +107,8 @@ TABLE_CONFIG = {
             "geolocation_zip_code_prefix",
             "geolocation_lat",
             "geolocation_lng"
-        ]
+        ],
+        "path": "data/raw/geolocation.csv"
     },
     
     "product_category_name_translation": {
@@ -109,7 +117,8 @@ TABLE_CONFIG = {
         "required_columns": [
             "product_category_name",
             "product_category_name_english"
-        ]
+        ],
+        "path": "data/raw/product_category_name_translation.csv"
     }
 
 }
