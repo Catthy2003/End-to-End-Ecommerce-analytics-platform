@@ -139,7 +139,7 @@ ORDER BY month;
 SELECT
     DATE_TRUNC('month', o.order_purchase_timestamp) AS month,
     p.product_category_name,
-    ROUND(SUM(op.payment_value), 2) AS revenue
+    ROUND(SUM(oi.price), 2) AS revenue
 
 FROM raw.orders o
 
