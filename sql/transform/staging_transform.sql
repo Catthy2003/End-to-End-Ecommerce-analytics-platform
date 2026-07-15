@@ -12,6 +12,7 @@ INSERT INTO staging.customers
 SELECT
     customer_id,
     customer_unique_id,
+    customer_zip_code_prefix,
     INITCAP(TRIM(customer_city)) AS customer_city,
     customer_state,
     CURRENT_TIMESTAMP AS etl_loaded_at
@@ -61,7 +62,7 @@ INSERT INTO staging.products
 SELECT
     product_id,
     COALESCE(
-        INITCAP(TRIM(product_category_name)),
+        LOWER(TRIM(product_category_name)),
         'Unknown'
     ) AS product_category_name,
     product_name_lenght,

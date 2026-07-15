@@ -19,3 +19,9 @@ logs/*.log
 
 # macOS
 .DS_Store
+
+# Dataset
+data/**/*.csv
+
+# hoặc
+*.csv

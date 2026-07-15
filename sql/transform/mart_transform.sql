@@ -30,27 +30,32 @@ DO NOTHING;
 INSERT INTO mart.dim_product (
     product_id,
     product_category_name,
-    product_name_lenght,
-    product_description_lenght,
+    product_name_length,
+    product_description_length,
     product_photos_qty,
-    product_weight_g,
+    product_weigth_g,
     product_length_cm,
-    product_height_cm,
+    product_heigth_cm,
     product_width_cm
 )
 
 SELECT
     product_id,
-    product_category_name,
-    product_name_lenght,
-    product_description_lenght,
+    INITCAP(COALESCE(
+        REPLACE(pt.product_category_name_english, '_', ' '),
+        REPLACE(p.product_category_name, '_', ' ')
+    )) AS product_category_name,
+    product_name_length,
+    product_description_length,
     product_photos_qty,
-    product_weight_g,
+    product_weigth_g,
     product_length_cm,
-    product_height_cm,
+    product_heigth_cm,
     product_width_cm
 
-FROM staging.products
+FROM staging.products p
+LEFT JOIN staging.product_category_name_translation pt
+ON LOWER(TRIM(p.product_category_name)) = LOWER(TRIM(pt.product_category_name))
 
 ON CONFLICT (product_id)
 DO NOTHING;
@@ -183,7 +188,7 @@ ON CONFLICT (date_key)
 DO NOTHING;
 
 -- ====================================================
--- FACT_ORDER
+-- FACT_SALES
 -- ====================================================
 CREATE TABLE IF NOT EXISTS mart.fact_sales (
 
@@ -213,14 +218,12 @@ CREATE TABLE IF NOT EXISTS mart.fact_sales (
         REFERENCES mart.dim_seller(seller_key),
 
     FOREIGN KEY (product_key)
-        REFERENCES mart.dim_product(product_key)
+        REFERENCES mart.dim_product(product_key),
+
+    UNIQUE(order_id, order_item_id)
 );
 
--- ====================================================
--- 
--- ====================================================
 WITH sales_source AS (
-
     SELECT
         o.order_id,
         o.customer_id,
@@ -259,5 +262,40 @@ sales_lookup AS (
         ss.review_score
 
     FROM sales_source ss
-    
+    JOIN mart.dim_customer dc
+        ON ss.customer_id = dc.customer_id
+    JOIN mart.dim_product dp
+        ON ss.product_id = dp.product_id
+    JOIN mart.dim_seller ds
+        ON ss.seller_id = ds.seller_id
+    JOIN mart.dim_date dd
+        ON DATE(ss.order_purchase_timestamp) = dd.full_date
 )
+
+INSERT INTO mart.fact_sales (
+    date_key,
+    customer_key,
+    seller_key,
+    product_key,
+    order_id,
+    order_item_id,
+    price,
+    freight_value,
+    review_score
+)
+
+SELECT
+    date_key,
+    customer_key,
+    seller_key,
+    product_key,
+    order_id,
+    order_item_id,
+    price,
+    freight_value,
+    review_score
+
+FROM sales_lookup
+
+ON CONFLICT (order_id, order_item_id)
+DO NOTHING;

@@ -49,12 +49,12 @@ CREATE TABLE IF NOT EXISTS staging.order_items (
 CREATE TABLE IF NOT EXISTS staging.products (
     product_id TEXT PRIMARY KEY,         
     product_category_name TEXT,      
-    product_name_lenght INTEGER,
-    product_description_lenght INTEGER,
+    product_name_length INTEGER,
+    product_description_length INTEGER,
     product_photos_qty INTEGER,
-    product_weight_g NUMERIC(10,2),
+    product_weigth_g NUMERIC(10,2),
     product_length_cm NUMERIC(10,2),
-    product_height_cm NUMERIC(10,2),
+    product_heigth_cm NUMERIC(10,2),
     product_width_cm NUMERIC(10,2),
     etl_loaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
