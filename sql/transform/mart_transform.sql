@@ -203,6 +203,7 @@ CREATE TABLE IF NOT EXISTS mart.fact_sales (
     order_item_id INTEGER NOT NULL,
 
     price NUMERIC(10,2),
+    order_status TEXT NOT NULL,
     freight_value NUMERIC(10,2),
     review_score SMALLINT,
 
@@ -228,6 +229,7 @@ WITH sales_source AS (
         o.order_id,
         o.customer_id,
         o.order_purchase_timestamp,
+        o.order_status,
 
         oi.order_item_id,
         oi.product_id,
@@ -253,6 +255,8 @@ sales_lookup AS (
         ss.order_item_id,
 
         dc.customer_key,
+        ss.order_status,
+
         dp.product_key,
         ds.seller_key,
         dd.date_key,
@@ -280,6 +284,7 @@ INSERT INTO mart.fact_sales (
     order_id,
     order_item_id,
     price,
+    order_status,
     freight_value,
     review_score
 )
@@ -292,6 +297,7 @@ SELECT
     order_id,
     order_item_id,
     price,
+    order_status,
     freight_value,
     review_score
 
