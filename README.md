@@ -7,7 +7,7 @@ An end-to-end data analytics platform built on a Brazilian E-Commerce Public Dat
 ---
 
 ### Project Architecture
-![Project Architecture] (Project Architecture.png)
+![Project Architecture](Project Architecture.png)
 
 ---
 
@@ -26,23 +26,23 @@ An end-to-end data analytics platform built on a Brazilian E-Commerce Public Dat
 ---
 
 ### Workflow
-![Project Architecture] (Workflow.png)
+![Project Architecture](Workflow.png)
 
 ---
 
 ## Raw data schema
-![Project Architecture] (ERD\raw_data_schema.png)
+![Project Architecture](ERD\raw_data_schema.png)
 
 ### Data Warehouse Design
 ## Raw data schema
-![Project Architecture] (ERD\raw_data_schema.png)
+![Project Architecture](ERD\raw_data_schema.png)
 
 ## Star schema
-![Project Architecture] (ERD\star_schema.png)
+![Project Architecture](ERD\star_schema.png)
 
 ---
 ### Power BI Dashboard
-![Project Architecture] (Dashboard/Olist_BI_Dashboard.png)
+![Project Architecture](Dashboard/Olist_BI_Dashboard.png)
 
 ---
 
@@ -56,7 +56,7 @@ An end-to-end data analytics platform built on a Brazilian E-Commerce Public Dat
 ---
 ### Dataset
 # Brazilian E-commerce Public Dataset by Olist
-![Project Architecture] (ERD\raw_data_erd.png)
+![Project Architecture](ERD\raw_data_erd.png)
 ---
 
 ### Future Improvements
