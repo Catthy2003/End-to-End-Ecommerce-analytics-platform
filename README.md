@@ -8,7 +8,7 @@ An end-to-end data analytics platform built on a Brazilian E-Commerce Public Dat
 
 ### Project Architecture
 
-![Project Architecture](Project_Architecture.png)
+![Project Architecture](https://github.com/Catthy2003/End-to-End-Ecommerce-analytics-platform/blob/main/Project_Architecture.png)
 
 ---
 
@@ -35,11 +35,11 @@ An end-to-end data analytics platform built on a Brazilian E-Commerce Public Dat
 ### Data Warehouse Design
 
 ## Raw data schema
-![Raw data schema](ERD\raw_data_schema.png)
+![Raw data schema](https://github.com/Catthy2003/End-to-End-Ecommerce-analytics-platform/blob/main/ERD/raw_data_schema.png)
 
 ## Star schema
 
-![Star schema](ERD\star_schema.png)
+![Star schema](https://github.com/Catthy2003/End-to-End-Ecommerce-analytics-platform/blob/main/ERD/star_schema.png)
 
 ---
 ### Power BI Dashboard
@@ -58,10 +58,13 @@ An end-to-end data analytics platform built on a Brazilian E-Commerce Public Dat
 - An **Average Order Value of 137.75 BRL** and **1.14 items per order** highlight opportunities to improve basket size through cross-selling and promotional bundles.
 
 ---
-### Dataset
+### Dataset ERD
 # Brazilian E-commerce Public Dataset by Olist
+![Raw Data ERD](https://github.com/Catthy2003/End-to-End-Ecommerce-analytics-platform/blob/main/ERD/raw_data_erd.png)
 
-![Raw Data ERD](ERD\raw_data_erd.png)
+# Star schema data
+![Raw Data ERD](https://github.com/Catthy2003/End-to-End-Ecommerce-analytics-platform/blob/main/ERD/star_schema_erd.png)
+
 
 ---
 
